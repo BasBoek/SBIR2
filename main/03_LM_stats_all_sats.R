@@ -59,11 +59,11 @@ quantile(data$difmax, seq(0,1,0.05), na.rm=T)
 ##############  mean cov en difmax #########
 ############################################
 
-agg_difmax <- aggregate(data$difmax, by=list(data$objectid, data$year), FUN = mean, na.rm=T)
-names(agg_difmax) <- c("perceel", "jaar", "mean_difmax") ## BAND ERBIJ !!!!!!
-agg_cov    <- round(as.data.frame(aggregate(data$cov, by=list(data$year, data$objectid), FUN = mean, na.rm=T)$x),5)
+agg_difmax <- aggregate(data$difmax, by=list(data$objectid, data$year, data$band), FUN = mean, na.rm=T)
+names(agg_difmax) <- c("perceel", "jaar", "band", "mean_difmax") ## BAND ERBIJ !!!!!!
+agg_cov    <- round(as.data.frame(aggregate(data$cov, by=list(data$year, data$objectid, data$band), FUN = mean, na.rm=T)$x),5)
 names(agg_cov) <- c("mean_cov") ## BAND ERBIJ !!!!!!
-agg_npixels    <- round(as.data.frame(aggregate(data$npixels, by=list(data$year, data$objectid), FUN = mean, na.rm=T)$x))
+agg_npixels    <- round(as.data.frame(aggregate(data$npixels, by=list(data$year, data$objectid, data$band), FUN = mean, na.rm=T)$x))
 names(agg_npixels) <- c("mean_npixels") ## BAND ERBIJ !!!!!!
 
 agg_thresholds <- cbind(agg_difmax, agg_cov, agg_npixels)
